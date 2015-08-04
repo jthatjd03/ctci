@@ -1,0 +1,159 @@
+--Find minimum distance between words(order preserved) in a big String
+ie. "hello how are you" => 3
+public class WordDistance(){
+	public int findDistance(String string, String s1, String s2){
+		//error checking
+		Map<String, List<Integer>> map = initializeMap(s);
+		
+		List<Integer> list1 = map.get(s1);
+		List<Integer> list2 = map.get(s2);
+		
+		if(list1==null || list2==null){
+			return -1;
+		}
+
+		int index1 = 0;
+		int index2 = 0;
+		int min = 0;
+		while(index1 < list1.length && index2.<list2.length){
+			int num1 = list1.get(index1);
+			int num2 = list2.get(index2);
+			min = Math.min(min, Math.abs(num1-num2));
+			if(num1 < num2){
+				index1++;
+			}else if (num1 > num2){
+				index2++;
+			}else{
+				return 0;
+			}
+		}
+		return min;
+	}
+
+	private Map<String, List<Integer>> initializeMap(String s){
+		Map<String, List<Integer>> map = new HashMap();
+		StringTokenizer st = new StringTokenizer(string);
+		int counter = 0;
+		while(st.hasTokens()){
+			String s = st.nextToken();
+			if(map.containsKey(s)){
+				map.put(s, map.get(s).add(counter));
+			}else{
+				List<Integer> list =  new ArrayList();
+				list.add()
+				map.put(0,counter);
+			}
+			counter++;
+		}
+	}
+}
+
+--Given a nested list of integers, return the sum of all integers in the list weighted by their depth For example, given the list {{1,1},2,{1,1}} the function should return 10 (four 1s at depth 2, one 2 at depth 1)
+public int findSum(String s){
+    //error checking null check, whitespace
+
+    Map<Integer, List<Integer>> depthMap = new HashMap();
+    int depth = 0;
+    for(int i=0;i<s.length();i++){
+        if(s.charAt(i)=='{'){
+            depth++;
+        }else if (s.charAt(i)=='}'){
+            depth--;
+        }
+        else if(s.charAt(i)>='0' && s.charAt(i)<='9'){
+            int intVal = Character.getNumericValue(s.charAt(i));
+            if(depthMap.containsKey(intVal)){
+                depthMap.get(intVal).add(depth);
+            }else{
+                List<Integer> list = new ArrayList();
+                list.add(depth);
+                depthMap.put(intVal, list);
+            }
+        }
+    }
+    int sum = 0;
+    for(Integer num : depthMap.keySet()){
+        for(int depthInMap : depthMap.get(num)){
+            sum += num * depthInMap;
+        }
+    }
+    return sum;
+}
+
+
+
+
+-----isNumber(string) leetcode 
+https://leetcode.com/problems/valid-number/
+
+-- Given two words as Strings, determine if they are isomorphic. leetcode
+https://leetcode.com/problems/isomorphic-strings/ (done)
+
+-- Question 1: public double pow(double a, int b) (done)
+https://leetcode.com/problems/powx-n/
+
+-- Find out at least one 3 elements array in a given integer array. The 3 elements have to be able to form a triangle  (done, kind of)
+https://leetcode.com/problems/3sum/
+
+----- print factors for number
+
+-- Given an input string and a target string, find the minimum substring of the input string that contains all of the characters in the target string
+https://leetcode.com/problems/minimum-window-substring/
+
+-- mirror tree (done)
+https://leetcode.com/problems/invert-binary-tree/
+
+----- Given a maximum line length, left right justify a long string. 
+https://leetcode.com/problems/text-justification/
+
+-- maximum consecutive sum of array (done)
+https://leetcode.com/problems/maximum-subarray/
+
+--convert BST to double linked list
+static ListNode convert(Node node){
+    //error checking
+    if(node==null){
+        return null;
+    }
+    Deque<Node> stack = new ArrayDeque();
+    Node toTrack = node;
+
+    ListNode head = new ListNode(-1);
+    ListNode previous = head;
+    while(toTrack!=null || !stack.isEmpty()){
+        if(toTrack!=null){
+            stack.addFirst(toTrack);
+            toTrack=toTrack.left;
+        }else{
+            Node popped = stack.removeFirst();
+            ListNode ln = new ListNode(popped.val);
+            ln.previous = previous;
+            previous.next=ln;
+            toTrack = popped.right;
+            previous = ln;
+        }
+    }
+    ListNode toReturn = head.next;
+    toReturn.previous = null;
+    return toReturn;
+}
+
+
+-- get all permutations of string
+public static List<String> getPermutations(String s) {
+    List<String> list = new ArrayList();
+    if (s.length() == 1) {
+        list.add(s);
+        return list;
+    }
+
+    char c = s.charAt(0);
+    List<String> result = getPermutations(s.substring(1, s.length()));
+    for (String string : result) {
+        for (int i = 0; i <= string.length(); i++) {
+            list.add(string.substring(0, i) + c + string.substring(i, string.length()));
+        }
+    }
+
+    return list;
+}
