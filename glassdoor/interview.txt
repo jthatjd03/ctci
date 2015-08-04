@@ -1,0 +1,50 @@
+Convert a tree to a doubly linked list.   
+
+Architect a cloud-based queuing service   
+
+Print a linked list in reverse recursively and non-destructively.  
+public void print(Node node){
+	if(node==null){
+		return;
+	}
+	print(node.next);
+	System.out.println(node.val);
+}
+
+Given a set of strings, return the smallest subset that contains prefixes for every string. If the list is ['foo', 'foog', 'food', 'asdf'] return ['foo', 'asdf']   
+
+You have two words and would like to find the "minimum edit distance" between them. Edit distance is defined as the number of operations with: adding a letter, subtracting a letter, and replacing a letter. Make a function that finds the minimum edit distance.  
+
+Bread-First Search on a Dictionary.   
+
+Standard rotated binary search question. You have a sorted array that has been shifted/cycled, perform a search on it   
+
+Design a product to help people find apartments - Investigate a Metric anomaly   
+
+Question is verbose, uses search engine, string matching etc., but at the end boils down to this: There is two dimensional array where each sub array (row) is sorted, i.e. [[1 1000 2000] [20 10001 5000] [55 10002 222222]] Find a minimum range contain a number from each row. For above array it should be (1000-1002) range.   
+
+Check if two strings (including caps, whitespace, punctuation) are palindromes without doing any preprocessing. I wrote my code in Java.   
+
+public TrieNode{
+	char c;
+	TrieNode[] children;
+	boolean isWord;
+
+	public TrieNode(char c){
+		this.c=c;
+		children = new TrieNode[26];
+	}
+
+	public void add(String s){
+		int charPosition = s.charAt(0)-'a';
+		if(children[charPosition]==null){
+			TrieNode child = new TrieNode(s.charAt(0));
+			children[charPosition] = child;
+		}
+		if(s.length()>1){
+			children[charPosition].add(s.substring(1));
+		}else{
+			children[charPosition].isWord=true;			
+		}
+	}
+}
