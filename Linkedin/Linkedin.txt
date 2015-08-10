@@ -1,3 +1,15 @@
+public class Sample{
+    private static Sample INSTANCE = null;
+    private Sample(){};
+
+    public synchronized static Sample getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new Sample();
+        }
+        return INSTANCE;
+    }
+}
+
 --Find minimum distance between words(order preserved) in a big String
 ie. "hello how are you" => 3
 public class WordDistance(){
@@ -196,7 +208,6 @@ public Node buildTree(List<Relation> data){
     Deque<Integer> queue = new ArrayDeque();
 
     for(Relation relation : data){
-
         Integer parent = relation.parent;
         if(parent==null){
             root=parent;            
