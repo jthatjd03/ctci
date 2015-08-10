@@ -39,9 +39,9 @@ public class WordDistance(){
 			if(map.containsKey(s)){
 				map.put(s, map.get(s).add(counter));
 			}else{
-				List<Integer> list =  new ArrayList();
-				list.add()
-				map.put(0,counter);
+				List<Integer> list = new ArrayList();
+				list.add(counter)
+				map.put(s, list);
 			}
 			counter++;
 		}
