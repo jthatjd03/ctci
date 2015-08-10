@@ -181,3 +181,55 @@ public static List<String> getPermutations(String s) {
 
     return list;
 }
+
+
+Given a list of Parent Child relationships, build a binary tree out of it
+child, parent, isLeft
+
+public class Pair{
+    int left;
+    int right;
+}
+public Node buildTree(List<Relation> data){
+    Map<Integer, Pair> map = new HashMap();
+    Integer root = null;
+    Deque<Integer> queue = new ArrayDeque();
+
+    for(Relation relation : data){
+
+        Integer parent = relation.parent;
+        if(parent==null){
+            root=parent;            
+            continue;
+        }
+        if(!map.containsKey(parent)){            
+            map.put(parent, new Pair());
+        }
+
+        if(relation.isLeft){
+            map.get(parent).left = relation.child;
+        }else{
+            map.get(parent).right = relation.child;
+        }        
+    }
+
+    Node root = build(map, root);
+    return root;    
+}
+
+private Node build(Map<Integer, Pair> map, Integer value){
+    if(node==null){
+        return null;
+    }
+
+    Node node = new Node(value);
+    
+    Node left = build(map.get(value).left);
+    node.left = left;
+
+    Node right = build(map.get(value).right);
+    node.right = right;
+
+    return node;
+    
+}
