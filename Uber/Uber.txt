@@ -60,3 +60,82 @@ public Node insert(Node node, int val){
 	}
 	return node;
 }
+
+//m = num rows;
+//n = num cols;
+public void printMatrix(int[][] matrix){
+	int length = matrix.length * matrix[0].length;		
+	int row = 0;
+	int col = 0;
+
+	int m = matrix.length;
+	int n = matrix[0].length;	
+	while(m >0 && n >0){
+		if(m==1){
+			for(int i =0;i<n;i++){
+				System.out.println(matrix[row][col]);
+				col++:
+			}
+			break;
+		}
+		if(n==1){
+			for(int i =0;i<m;i++){
+				System.out.println(matrix[row][col]);
+				row++;
+			}
+			break;
+		}
+		for(int i =0;i<n - 1;i++){		
+			System.out.println(matrix[row][col]);
+			row++;
+		}
+		for(int i =0;i<m - 1;i++){		
+			System.out.println(matrix[row][col]);
+			col++;
+		}
+		for(int i =0;i<n-1;i++){
+			System.out.println(matrix[row][col]);
+			row--;
+		}
+		for(int i -0;<m-1;i++){
+			System.out.println(matrix[row][col])'
+			col++;
+		}
+		row++;
+		col++;
+		m = m-2;
+		n = n-2;
+	}	
+}
+    public int[][] generateMatrix(int n) {
+        int[][] matrix = new int[n][n];
+        int row = 0;
+        int col = 0;
+        int step = 0;
+        
+        int num =0;
+        while(n>=0){
+        	for(int i =0;i<n-1;i++){
+        		matrix[row][col] = num;
+        		col++
+        		num++;
+        	}
+        	for(int i = 0;i<n-1;j++){
+        		matrix[row][col] = num;
+        		row++;
+        		num++;
+        	}
+        	for(int i = 0;i<n-1;i++){
+        		matrix[row][col] = num;
+        		col--;
+        		num++;
+        	}
+        	for(int i =0;i<n-1;i++){
+        		matrix[row][col] = num;
+        		row--;
+        		num++;
+        	}
+        	n = n-2;
+        }
+        return matrix;
+    }
