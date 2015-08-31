@@ -1,0 +1,53 @@
+private static final int NUMBER_OF_ROWS_IN_KEYBOARD = 4;
+private static final int NUMBER_OF_COL_IN_KEYBOARD = 6;
+
+public enum DIRECTION {
+    HORIZONTAL, VERTICAL
+}
+
+public void type(String string){	
+	if(StringUtils.isBlank(string)){
+		return;
+	}
+
+	int row = 0;
+	int col = 0;
+
+	for(int i = 0;i<string.length();i++){
+		char c = string.charAt(i);		
+		int newRow = (c - 'a') / NUMBER_OF_ROWS_IN_KEYBOARD;
+		int newCol = (c - 'a') % NUMBER_OF_COL_IN_KEYBOARD;
+
+		int rowDiff = newRow - row;
+		int colDiff = newCol - col;
+		move(HORIZONTAL, rowDiff);
+		move(VERTICAL, colDiff);
+		enter();
+		row = newRow;
+		col = newCol;
+	}
+}
+private void move(Direction direction, int steps){		
+	if(direction==HORIZONTAL){
+		if(steps>=0){
+			for(int i =0;i<steps;i++){
+				right();
+			}
+		}else{
+			for(int i =0;i<Math.abs(steps);i++){
+				right();
+			}
+		}
+	}else if(direction==VERTICAL){
+		if(steps>=0){
+			for(int i =0;i<steps;i++){
+				up();
+			}
+		}else{
+			for(int i =0;i<Math.abs(steps);i++){
+				down();
+			}
+		}
+	}		
+}
+}

@@ -1,0 +1,62 @@
+public boolean search(Node node, int val){
+	if(node==null){
+		return false;
+	}
+
+	if(node.val==val){
+		return true; 
+	}else if (val < node.val){
+		return search(node.left);
+	}else{
+		return search(node.right);
+	}	
+}
+
+
+//delete node without children
+//delete node with both children
+//delete node with one child
+public Node delete(Node node, int value){
+	if(node == null){
+		return null;	
+	}
+	if(val == node.val){
+		if(node.left == null){
+			return node.right;
+		}
+		if(node.right == null){
+			return node.left;
+		}
+		int highestVal = findHighest(node.left);
+		node.val = highestVal;
+		node.left = delete(node.left, node.val);
+	}
+	if(val < node.val){
+		node.left = delete(node.left, val);
+	}
+	if(val > node.val){
+		node.right = delete(node.right, val);
+	}
+
+	return node;
+}
+public int findHighest(Node node){
+	while(node.right!=null){
+		node = node.right;
+	}
+	return node.val;
+}
+
+public Node insert(Node node, int val){
+	if(node == null){
+		Node newNode = new Node(val);
+		return newNode;
+	}
+	if(val < node.left){
+		insert(node.left, val);
+	}
+	if(node > node.right){
+		insert(node.right, val);
+	}
+	return node;
+}
